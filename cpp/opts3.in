@@ -1,0 +1,10 @@
+n "number of stuff" 5 required 
+m "number of m" 6 
+enable_me "enable me to do something" 
+crap required
+another xxx required
+input in.dat 
+out_file "output file" out.dat 
+config_file "config options file" con3.dat 
+
+

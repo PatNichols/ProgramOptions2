@@ -1,0 +1,10 @@
+usecpu 
+max_files "max number of files" 32
+kern_type "type of kernel \n  0)dot product \n  1) polynomial of dot product\n  2)rbf\n  3)logistic" 2
+kern_power 2 required
+kern_scale required
+max_its 32 required
+eps 1.e-8
+nthreads "num of threads" required
+train "training str" str required
+some "some" 0 required
