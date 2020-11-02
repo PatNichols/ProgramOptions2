@@ -1,0 +1,7 @@
+
+lib_LTLIBRARIES=libputils.la
+libputils_la_SOURCES=putils.cpp program_options.cpp
+
+bin_PROGRAMS=program_options_test
+program_options_test_SOURCES=program_options_test.cpp
+program_options_test_LDADD=libputils.la
