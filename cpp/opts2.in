@@ -1,4 +1,4 @@
-n "number of stuff" 5 required 
+n "number of stuff" 4 required 
 m "number of m" 6 
 enable_me "enable me to do something" false 
 crap "" true 

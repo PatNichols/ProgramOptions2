@@ -31,6 +31,7 @@ void test_1()
     std::cerr << opts << "\n";
     std::cerr << "\n";
     opts.parse_command_line(argc,argv);
+    std::cerr << "after parsing command line :\n" << opts << "\n";
     if (opts.has_valid_option(cfile_option)) {
         std::string cfile = opts.get_value(cfile_option);
         std::cerr << "parsing " << cfile << "\n";
@@ -40,6 +41,7 @@ void test_1()
         std::cerr << "options is not valid\n";
         exit(-1);
     }
+    std::cerr << "after parsing :\n";
     std::cerr << opts << "\n";
     opts.write_options_to_file(out_name);
 
@@ -79,6 +81,8 @@ void test_2()
     opts.add_option("input","in.dat");
     opts.add_option("out_file","output file","out.dat");
     opts.add_option("config_file","config options file");
+
+    std::cerr << "before parsing : " << opts << "\n";
     opts.parse_command_line(argc,argv);
     if (opts.has_valid_option(cfile_option)) {
         std::string cfile = opts.get_value(cfile_option);
@@ -120,6 +124,7 @@ void test_3()
     
     opts.read_options_from_file(opt_name);
     opts.parse_command_line(argc,argv);
+    std::cerr << "after parsing command line \n" << opts<< "\n";
     if (opts.has_valid_option(cfile_option)) {
         std::string cfile = opts.get_value(cfile_option);
         std::cerr << "parsing " << cfile << "\n";
@@ -323,8 +328,9 @@ void test_0()
     std::cerr << "tokens size = " << tokens.size() << "\n";
     std::cerr << "tokens  = \n";         
     for (std::size_t k=0;k<ntokens;++k) {
-        std::cerr << tokens[k] << "\n";
+        std::cerr << tokens[k] << " ";
     }
+    std::cerr << "\n";
     std::cerr << "End Test 0\n";
 }
 

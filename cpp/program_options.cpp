@@ -5,10 +5,11 @@ namespace putils {
 
 void program_options::parse_command_line(int argc,char **argv,bool allow_unused_args) {
     prog_name = std::move(std::string(argv[0]));
+    
     for (int i=1; i<argc; ++i) {
         if (argv[i][0]=='-') {
             int st = 1;
-            if (argv[i][0]=='-') {
+            if (argv[i][1]=='-') {
                 st = 2;
             }
             std::string key(argv[i]+st);
@@ -22,8 +23,8 @@ void program_options::parse_command_line(int argc,char **argv,bool allow_unused_
                     set_value(key,"true");
                 }
             } else {
-                std::string val = key.substr(p+1);
                 std::string keyn = key.substr(0,p);
+                std::string val = key.substr(p+1);
                 set_value(keyn,val);
             }
         } else {
@@ -37,7 +38,7 @@ void program_options::parse_command_line(int argc,char **argv,bool allow_unused_
         }
     }
 }
-void program_options::read_options_from_stream(std::istream& in) {
+void program_options::read_options_from_stream(std::ifstream& in) {
     size_t ntokens;
     int quote = '\"';
     size_t k,end,nleft,sz;
