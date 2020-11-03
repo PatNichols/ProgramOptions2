@@ -1,0 +1,5 @@
+
+./configure
+make -j 
+./program_options_test
+

@@ -16,12 +16,10 @@ poption * poption_init2(poption *p)
 poption * poption_init(const char *key,const char *des,const char *val,int r)
 {
    poption *opt = MALLOC_PTR(poption);
-   fprintf(stderr,"allocating option %s %s %s %d\n",key,des,val,r);
+
    opt->key = Strdup(key);
-   fprintf(stderr,"key = %s\n",opt->key); 
    opt->des = 0x0;
    if (des) opt->des = Strdup(des);
-   fprintf(stderr,"des = %s\n",opt->des); 
    if (val) {
        opt->val = strdup(val);
        opt->stat = 0;
@@ -29,9 +27,7 @@ poption * poption_init(const char *key,const char *des,const char *val,int r)
        opt->val = 0x0;
        opt->stat = -1;
    }
-   fprintf(stderr,"val = %s\n",opt->val); 
    opt->r = r;
-   fprintf(stderr,"allocated option %s %s %s %d\n",key,des,val,r);
    return opt;
 }
 
@@ -91,7 +87,6 @@ const char *filename)
     while (!feof(fp)) {
         if (Getline(&sline,&line_sz,fp)==-1) break;
         ntokens = expand_string(sline,delims,tokens);
-        fprintf(stderr,"sline = %s ntokens= %ull\n",sline,ntokens);
         end = 0;
         des[0] = 0x0;
         if (ntokens>1 && tokens[1][0]==quote) {
@@ -107,13 +102,10 @@ const char *filename)
                    if (tokens[k][sz-1]==quote) {
                        break;
                    }
-                   fprintf(stderr,"%ull %s\n",k,des);
                }
            }
         } 
-        fprintf(stderr,"end = %ull\n",end);
         nleft = ntokens - end - 1;
-        fprintf(stderr,"key = %s des = %s nleft = %ull\n",tokens[0],des,nleft);
         switch (nleft) {
         case 0:
           program_options_add_option(popts,tokens[0],des,0x0,0);
@@ -187,7 +179,6 @@ const char *filename)
    {
        if (Getline(&sline,&line_sz,fp)==-1) break;
        ntokens = expand_string(sline,delims,tokens);
-       fprintf(stderr,"ntokens = %ull\n",ntokens);
        switch (ntokens)
        {
        case 0:
