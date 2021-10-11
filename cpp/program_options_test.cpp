@@ -7,18 +7,19 @@ void test_1()
     std::string cfile_option("config_file");
     putils::program_options opts;
     int argc = 9;
-    std::vector<std::string> astr={ "some_program", 
-        "-n", "4", "--m", "6", 
-        "-crap","--out_file=out.txt","-config_file=con.dat",
-                    "-another=3" };
+    std::vector<std::string> astr= { "some_program",
+                                     "-n", "4", "--m", "6",
+                                     "-crap","--out_file=out.txt","-config_file=con.dat",
+                                     "-another=3"
+                                   };
     char **argv = new char*[argc];
-    for (int i=0;i<argc;++i) {
+    for (int i=0; i<argc; ++i) {
         argv[i] = strdup( astr[i].c_str() );
     }
     std::cerr << "input is \n";
-    for (int i=0;i<argc;++i) std::cerr << " " << argv[i];    
+    for (int i=0; i<argc; ++i) std::cerr << " " << argv[i];
     std::cerr << "\n";
-    
+
     opts.add_option("n","number of stuff",1);
     opts.add_option("m","number of m","2");
     opts.add_option("enable_me","enable me to do something","false");
@@ -36,7 +37,7 @@ void test_1()
         std::string cfile = opts.get_value(cfile_option);
         std::cerr << "parsing " << cfile << "\n";
         opts.parse_config_file(cfile);
-    }       
+    }
     if (!opts) {
         std::cerr << "options is not valid\n";
         exit(-1);
@@ -45,7 +46,7 @@ void test_1()
     std::cerr << opts << "\n";
     opts.write_options_to_file(out_name);
 
-    for (int i=argc;i>0;) {
+    for (int i=argc; i>0;) {
         --i;
         free(argv[i]);
     }
@@ -61,18 +62,19 @@ void test_2()
     std::string cfile_option("config_file");
     putils::program_options opts;
     int argc = 8;
-    std::vector<std::string> astr={ "some_program", 
-        "-n", "4", "--m", "6", 
-        "-crap","--out_file=out.txt","-config_file=con2.dat" };
+    std::vector<std::string> astr= { "some_program",
+                                     "-n", "4", "--m", "6",
+                                     "-crap","--out_file=out.txt","-config_file=con2.dat"
+                                   };
 
     char **argv = new char*[argc];
-    for (int i=0;i<argc;++i) {
+    for (int i=0; i<argc; ++i) {
         argv[i] = strdup(astr[i].c_str());
     }
     std::cerr << "input is \n";
-    for (int i=0;i<argc;++i) std::cerr << " " << argv[i];    
+    for (int i=0; i<argc; ++i) std::cerr << " " << argv[i];
     std::cerr << "\n";
-    
+
     opts.add_option("n","number of stuff",1);
     opts.add_option("m","number of m","2");
     opts.add_option("enable_me","enable me to do something","false");
@@ -88,7 +90,7 @@ void test_2()
         std::string cfile = opts.get_value(cfile_option);
         std::cerr << "parsing " << cfile << "\n";
         opts.parse_config_file(cfile);
-    }       
+    }
     if (!opts) {
         std::cerr << "options is not valid\n";
         exit(-1);
@@ -96,7 +98,7 @@ void test_2()
     std::cerr << opts << "\n";
     opts.write_options_to_file(out_name);
 
-    for (int i=argc;i>0;) {
+    for (int i=argc; i>0;) {
         --i;
         free(argv[i]);
     }
@@ -110,18 +112,19 @@ void test_3()
     std::string cfile_option("config_file");
     putils::program_options opts;
     int argc = 8;
-    std::vector<std::string> astr={ "some_program", 
-        "-n", "4", "--m", "6", 
-        "-crap","--out_file=out.txt","-config_file=con2.dat" };
+    std::vector<std::string> astr= { "some_program",
+                                     "-n", "4", "--m", "6",
+                                     "-crap","--out_file=out.txt","-config_file=con2.dat"
+                                   };
 
     char **argv = new char*[argc];
-    for (int i=0;i<argc;++i) {
+    for (int i=0; i<argc; ++i) {
         argv[i] = strdup( astr[i].c_str() );
     }
     std::cerr << "input is \n";
-    for (int i=0;i<argc;++i) std::cerr << " " << argv[i];    
+    for (int i=0; i<argc; ++i) std::cerr << " " << argv[i];
     std::cerr << "\n";
-    
+
     opts.read_options_from_file(opt_name);
     opts.parse_command_line(argc,argv);
     std::cerr << "after parsing command line \n" << opts<< "\n";
@@ -129,13 +132,13 @@ void test_3()
         std::string cfile = opts.get_value(cfile_option);
         std::cerr << "parsing " << cfile << "\n";
         opts.parse_config_file(cfile);
-    }       
+    }
     if (!opts) {
         std::cerr << "options is not valid\n";
         exit(-1);
     }
     std::cerr << opts << "\n";
-    for (int i=argc;i>0;) {
+    for (int i=argc; i>0;) {
         --i;
         free(argv[i]);
     }
@@ -149,25 +152,26 @@ void test_4()
     std::string cfile_option("config_file");
     putils::program_options opts;
     int argc = 1;
-    std::vector<std::string> astr={ "some_program", 
-        "-n", "4", "--m", "6", 
-        "-crap","--out_file=out.txt","-config_file=con2.dat" };
+    std::vector<std::string> astr= { "some_program",
+                                     "-n", "4", "--m", "6",
+                                     "-crap","--out_file=out.txt","-config_file=con2.dat"
+                                   };
 
     char **argv = new char*[argc];
     argv[0] = strdup("some_program");
     std::cerr << "input is \n";
-    for (int i=0;i<argc;++i) std::cerr << " " << argv[i];    
+    for (int i=0; i<argc; ++i) std::cerr << " " << argv[i];
     std::cerr << "\n";
     std::cerr << "options file = " << opt_name << "\n";
-    std::cerr << "config  file = " << cfile_option << "\n";    
-    
+    std::cerr << "config  file = " << cfile_option << "\n";
+
     opts.read_options_from_file(opt_name);
     opts.parse_command_line(argc,argv);
     if (opts.has_valid_option(cfile_option)) {
         std::string cfile = opts.get_value(cfile_option);
         std::cerr << "parsing " << cfile << "\n";
         opts.parse_config_file(cfile);
-    }       
+    }
     if (!opts) {
         std::cerr << "options is not valid\n";
         exit(-1);
@@ -184,17 +188,18 @@ void test_4b()
     std::string cfile_option("config_file");
     putils::program_options opts;
     int argc = 1;
-    std::vector<std::string> astr={ "some_program", 
-        "-n", "4", "--m", "6", 
-        "-crap","--out_file=out.txt","-config_file=con2.dat" };
+    std::vector<std::string> astr= { "some_program",
+                                     "-n", "4", "--m", "6",
+                                     "-crap","--out_file=out.txt","-config_file=con2.dat"
+                                   };
 
     char **argv = new char*[argc];
     argv[0] = strdup("some_program");
     std::cerr << "input is \n";
-    for (int i=0;i<argc;++i) std::cerr << " " << argv[i];    
+    for (int i=0; i<argc; ++i) std::cerr << " " << argv[i];
     std::cerr << "\n";
     std::cerr << "options file = " << opt_name << "\n";
-    std::cerr << "config  file = " << cfile_option << "\n";    
+    std::cerr << "config  file = " << cfile_option << "\n";
     opts.read_options_from_file(opt_name);
 
     std::cerr << "before parsing\n" << opts << "\n\n";
@@ -205,7 +210,7 @@ void test_4b()
         std::string cfile = opts.get_value(cfile_option);
         std::cerr << "parsing " << cfile << "\n";
         opts.parse_config_file(cfile);
-    }       
+    }
 
     std::cerr << "after parsing\n" << opts << "\n\n";
 
@@ -226,18 +231,19 @@ void test_5()
     std::string cfile_option("config_file");
     putils::program_options opts;
     int argc = 6;
-    std::vector<std::string> astr={ "some_program", 
-        "--m", "6", 
-        "-crap","--out_file=out.txt","-config_file=con2.dat" };
+    std::vector<std::string> astr= { "some_program",
+                                     "--m", "6",
+                                     "-crap","--out_file=out.txt","-config_file=con2.dat"
+                                   };
 
     char **argv = new char*[argc];
-    for (int i=0;i<argc;++i) {
+    for (int i=0; i<argc; ++i) {
         argv[i] = strdup(astr[i].c_str());
     }
     std::cerr << "input is \n";
-    for (int i=0;i<argc;++i) std::cerr << " " << argv[i];    
+    for (int i=0; i<argc; ++i) std::cerr << " " << argv[i];
     std::cerr << "\n";
-    
+
     opts.add_option("n","number of stuff",1);
     opts.add_option("m","number of m","2");
     opts.add_option("enable_me","enable me to do something","false");
@@ -251,7 +257,7 @@ void test_5()
         std::string cfile = opts.get_value(cfile_option);
         std::cerr << "parsing " << cfile << "\n";
         opts.parse_config_file(cfile);
-    }       
+    }
     setenv("POPT_TEST_N","5",1);
     opts.parse_env("POPT_TEST");
     if (!opts) {
@@ -261,7 +267,7 @@ void test_5()
     std::cerr << opts << "\n";
     opts.write_options_to_file(out_name);
 
-    for (int i=argc;i>0;) {
+    for (int i=argc; i>0;) {
         --i;
         free(argv[i]);
     }
@@ -275,18 +281,19 @@ void test_6()
     std::string cfile_option("config_file");
     putils::program_options opts;
     int argc = 9;
-    std::vector<std::string> astr={ "some_program", 
-        "-n", "4", "--m", "6","--help", 
-        "-crap","--out_file=out.txt","-config_file=con2.dat" };
+    std::vector<std::string> astr= { "some_program",
+                                     "-n", "4", "--m", "6","--help",
+                                     "-crap","--out_file=out.txt","-config_file=con2.dat"
+                                   };
 
     char **argv = new char*[argc];
-    for (int i=0;i<argc;++i) {
+    for (int i=0; i<argc; ++i) {
         argv[i] = strdup(astr[i].c_str());
     }
     std::cerr << "input is \n";
-    for (int i=0;i<argc;++i) std::cerr << " " << argv[i];    
+    for (int i=0; i<argc; ++i) std::cerr << " " << argv[i];
     std::cerr << "\n";
-    
+
     opts.add_option("n","number of stuff",1);
     opts.add_option("m","number of m","2");
     opts.add_option("enable_me","enable me to do something","false");
@@ -300,7 +307,7 @@ void test_6()
         std::string cfile = opts.get_value(cfile_option);
         std::cerr << "parsing " << cfile << "\n";
         opts.parse_config_file(cfile);
-    }       
+    }
     if (!opts) {
         std::cerr << "options is not valid\n";
         exit(-1);
@@ -308,7 +315,7 @@ void test_6()
     std::cerr << opts << "\n";
     opts.write_options_to_file(out_name);
 
-    for (int i=argc;i>0;) {
+    for (int i=argc; i>0;) {
         --i;
         free(argv[i]);
     }
@@ -326,8 +333,8 @@ void test_0()
     std::cerr << "ntokens = " << ntokens << "\n";
     std::cerr << "str     = " << test_str << "\n";
     std::cerr << "tokens size = " << tokens.size() << "\n";
-    std::cerr << "tokens  = \n";         
-    for (std::size_t k=0;k<ntokens;++k) {
+    std::cerr << "tokens  = \n";
+    for (std::size_t k=0; k<ntokens; ++k) {
         std::cerr << tokens[k] << " ";
     }
     std::cerr << "\n";

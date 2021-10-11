@@ -18,7 +18,7 @@ struct prog_option {
     int req;
 
     prog_option()=delete;
-    
+
     explicit prog_option(const std::string& keyw,const std::string& descr,const std::string& value,int r=0):
         key(keyw),des(descr),val(value),stat(0),req(r) {
         if (val.size()==0) stat=-1;
@@ -138,7 +138,7 @@ public:
         if (allow_unused_options) return;
         if (key_str.size()) {
             std::cerr << "unknown option " << key_str << " in program_options::set_value\n";
-        }else{
+        } else {
             std::cerr << "empty string in program_options::set_value\n";
         }
         print_help();
@@ -157,7 +157,9 @@ public:
         exit(EXIT_FAILURE);
     }
 
-    std::string get_value(const char * key_str) const { return get_value(std::string(key_str));}
+    std::string get_value(const char * key_str) const {
+        return get_value(std::string(key_str));
+    }
 
     bool has_option(const std::string& key_str) const {
         const_iterator iter = options.cbegin();
@@ -168,8 +170,10 @@ public:
         return false;
     }
 
-    bool has_option(const char *key_str) { return has_option(std::string(key_str));}
-    
+    bool has_option(const char *key_str) {
+        return has_option(std::string(key_str));
+    }
+
     bool has_valid_option(const std::string& key_str) const {
         const_iterator iter = options.cbegin();
         const_iterator iend = options.cend();
@@ -179,7 +183,9 @@ public:
         return false;
     }
 
-    bool has_valid_option(const char *key_str) const { return has_valid_option(std::string(key_str));}
+    bool has_valid_option(const char *key_str) const {
+        return has_valid_option(std::string(key_str));
+    }
 
 
     bool has_all_required() const {
