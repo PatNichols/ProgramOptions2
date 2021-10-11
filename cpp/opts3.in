@@ -6,5 +6,3 @@ another xxx required
 input in.dat 
 out_file "output file" out.dat 
 config_file "config options file" con3.dat 
-
-
